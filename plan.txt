@@ -1,0 +1,15 @@
+step 1:
+
+get ai feature to work, useEffect and useState to re-run function to generate text upon sending message
+
+step 2:
+
+save previous questions and answers to begin structuring like a conversation/chain of messages
+
+step 3:
+
+sort out styling and aesthetic aspects (scrolling etc)
+
+step 4:
+
+add in other interesting features such as text to speech (expo-speech) and/or image generation
