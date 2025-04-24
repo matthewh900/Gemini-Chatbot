@@ -1,13 +1,14 @@
 import { GoogleGenAI } from "@google/genai";
 import { useEffect, useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Button, Text, TextInput, View } from "react-native";
 
 export default function Index() {
   const [res, setRes] = useState<string | undefined>("")
   const [prompt, setPrompt] = useState<string>("")
   const [pressed, setPressed] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
   
-  const ai = new GoogleGenAI({})
+  const ai = new GoogleGenAI({apiKey: "AIzaSyAurfcK_crrwAWP9uoj2HtmASLlHJOXnAg"})
 
   async function main() {
     const response = await ai.models.generateContent({
@@ -18,8 +19,17 @@ export default function Index() {
   }
 
   useEffect(() => {
-    main()
+    setLoading(true)
+    main().then(() => {
+      setLoading(false)
+    })
   }, [pressed])
+
+  if (loading){
+    return (
+      <ActivityIndicator size="large"/>
+    )
+  }
 
   return (
     <View
@@ -37,7 +47,7 @@ export default function Index() {
       />
       <Button
       title="Enter"
-      onPress={() => setPressed}
+      onPress={() => setPressed(!pressed)}
       />
     </View>
   );
