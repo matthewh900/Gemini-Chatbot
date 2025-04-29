@@ -15,7 +15,6 @@ export default function Index() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const ai = new GoogleGenAI({
-    apiKey: "AIzaSyAurfcK_crrwAWP9uoj2HtmASLlHJOXnAg",
   });
 
   async function main() {
