@@ -3,28 +3,27 @@ import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Button,
-  KeyboardAvoidingView,
-  ScrollView,
   Text,
   TextInput,
-  View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Index() {
-  const [res, setRes] = useState<string | undefined>("");
+  const [res, setRes] = useState<string | undefined>(""); //change this to array of responses
   const [prompt, setPrompt] = useState<string>("");
   const [pressed, setPressed] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const ai = new GoogleGenAI({});
+  const ai = new GoogleGenAI({
+    apiKey: "AIzaSyAurfcK_crrwAWP9uoj2HtmASLlHJOXnAg",
+  });
 
   async function main() {
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents: prompt || "say hello to me",
     });
-    setRes(response.text);
+    setRes(response.text); // make this append response to the end of array
   }
 
   useEffect(() => {
@@ -43,7 +42,8 @@ export default function Index() {
         paddingTop: 30,
         paddingBottom: 40,
       }}>
-        {loading ? <ActivityIndicator size="large" /> : <Text>{res}</Text>}
+        {/* make this use flatlist using chatbubble to renders item */}
+        {loading ? <ActivityIndicator size="large" /> : <Text>{res}</Text>} 
         <TextInput
           onChangeText={setPrompt}
           value={prompt}

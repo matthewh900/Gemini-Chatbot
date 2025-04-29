@@ -1,4 +1,4 @@
-step 1:
+step 1: - finished
 
 get ai feature to work, useEffect and useState to re-run function to generate text upon sending message
 
